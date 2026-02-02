@@ -22,12 +22,21 @@
         "tags": [
           "employee-controller"
         ],
-        "operationId": "getEmployee",
+        "operationId": "getEmployeeV2",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "version",
+            "in": "query",
+            "required": false,
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -259,7 +268,7 @@
         "tags": [
           "employee-controller"
         ],
-        "operationId": "getAllEmployees",
+        "operationId": "getAllEmployeesV2",
         "parameters": [
           {
             "name": "page",
@@ -297,6 +306,25 @@
             "schema": {
               "type": "string",
               "default": "asc"
+            }
+          },
+          {
+            "name": "X-API-VERSION=2",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "X-API-VERSION",
+            "in": "header",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "1"
+              ]
             }
           }
         ],
@@ -366,7 +394,7 @@
               "*/*": {
                 "schema": {
                   "type": "string",
-                  "format": "binary"
+                  "format": "byte"
                 }
               }
             }
@@ -509,22 +537,22 @@
         }
       }
     },
-    "/authentication/register": {
+    "/api/v1/authentication/register": {
       "post": {
         "tags": [
           "authentication-controller"
         ],
         "operationId": "registerUser",
-        "parameters": [
-          {
-            "name": "newUser",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "$ref": "#/components/schemas/UserCreateDto"
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserCreateDto"
+              }
             }
-          }
-        ],
+          },
+          "required": true
+        },
         "responses": {
           "200": {
             "description": "OK",
@@ -539,22 +567,22 @@
         }
       }
     },
-    "/authentication/login": {
+    "/api/v1/authentication/login": {
       "post": {
         "tags": [
           "authentication-controller"
         ],
         "operationId": "loginUser",
-        "parameters": [
-          {
-            "name": "credential",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "$ref": "#/components/schemas/UserLoginDto"
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserLoginDto"
+              }
             }
-          }
-        ],
+          },
+          "required": true
+        },
         "responses": {
           "200": {
             "description": "OK",
@@ -705,7 +733,7 @@
             "type": "integer",
             "format": "int32"
           },
-          "userName": {
+          "username": {
             "type": "string"
           }
         }
