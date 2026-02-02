@@ -8,6 +8,9 @@ import com.ems.ems.dto.response.employee.EmployeeResponseDto;
 import com.ems.ems.service.EmployeeInterface;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +25,7 @@ import java.io.IOException;
 public class EmployeeController {
 
     private final EmployeeInterface employeeInterface;
+    Logger logger = LoggerFactory.getLogger(EmployeeController.class);
 
     @PostMapping
     public ResponseEntity<EmployeeResponseDto> createEmployee(
@@ -32,22 +36,53 @@ public class EmployeeController {
                 HttpStatus.CREATED);
     }
 
-    @GetMapping
-    public ResponseEntity<PaginatedResponse<EmployeeResponseDto>> getAllEmployees(
+    @GetMapping(headers = "X-API-VERSION=1")
+    public ResponseEntity<PaginatedResponse<EmployeeResponseDto>> getAllEmployeesV1(
             @RequestParam(name = "page",defaultValue = "0") Integer page,
             @RequestParam(name = "size",defaultValue = "10")Integer size,
             @RequestParam(name = "sortBy",defaultValue = "id")String sortBy,
             @RequestParam(name = "sortDir",defaultValue = "asc") String sortDir
     ){
+        logger.info("get employees version 1");
+        return new ResponseEntity<>(
+                employeeInterface.getAllEmployees(page, size, sortBy, sortDir),
+                HttpStatus.OK);
+    }
+    @GetMapping
+    public ResponseEntity<PaginatedResponse<EmployeeResponseDto>> getAllEmployeesV2(
+            @RequestParam(name = "page",defaultValue = "0") Integer page,
+            @RequestParam(name = "size",defaultValue = "10")Integer size,
+            @RequestParam(name = "sortBy",defaultValue = "id")String sortBy,
+            @RequestParam(name = "sortDir",defaultValue = "asc") String sortDir,
+            @RequestHeader(value = "X-API-VERSION=2")int version
+    ){
+        logger.info("get employees version 2");
         return new ResponseEntity<>(
                 employeeInterface.getAllEmployees(page, size, sortBy, sortDir),
                 HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping(value = "/{id}",params = "version=1")
     public ResponseEntity<EmployeeResponseDto> getEmployee(
             @PathVariable Integer id
     ){
+        logger.info("get employee version 1");
+        return new ResponseEntity<>(
+                employeeInterface.getEmployee(id),
+                HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/{id}",params = "version=2")
+    public ResponseEntity<EmployeeResponseDto> getEmployeeV2(
+            @PathVariable Integer id,
+            @RequestParam(name = "version",required = false)Integer version
+    ){
+        if(version == null || version == 1)
+            logger.info("get employee version 1 ");
+        else if(version == 2)
+            logger.info("get employee version 2");
+        else
+            logger.info("Unsupported API version");
         return new ResponseEntity<>(
                 employeeInterface.getEmployee(id),
                 HttpStatus.OK);
@@ -97,12 +132,10 @@ public class EmployeeController {
     }
 
     @GetMapping("/{id}/image")
-    public ResponseEntity<MultipartFile> getEmployeeImage(
+    public ResponseEntity<byte[]> getEmployeeImage(
             @PathVariable Integer id
-    ){
-        return new ResponseEntity<>(
-                employeeInterface.getEmployeeImage(id),
-                HttpStatus.OK);
+    ) throws IOException {
+        return ResponseEntity.ok(employeeInterface.getEmployeeImage(id));
     }
 
 }

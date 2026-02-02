@@ -26,6 +26,8 @@ public class CustomSecurityFilterChain {
             "/swagger-ui.html",
             "/swagger-ui/**",
             "/v3/api-docs/**",
+            "/employees/**",
+            "/departments/**",
     };
 
     private final JwtAuthenticationFilter jwtAuthenticationFilter;

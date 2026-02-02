@@ -82,8 +82,9 @@ public class EmployeeService implements EmployeeInterface {
     }
 
     @Override
-    public MultipartFile getEmployeeImage(Integer id) {
-        return null;
+    public byte[] getEmployeeImage(Integer id) throws IOException {
+        EmployeeModel employee = getEmployeeModel(id);
+        return fileStorageInterface.getImage(employee.getImage());
     }
 
     private EmployeeModel updateEmployeeDetail(Integer id, EmployeeUpdateDto employee) {
