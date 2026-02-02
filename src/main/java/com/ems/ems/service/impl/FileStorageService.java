@@ -2,6 +2,8 @@ package com.ems.ems.service.impl;
 
 import com.ems.ems.service.FileStorageInterface;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -39,5 +41,11 @@ public class FileStorageService implements FileStorageInterface {
         } catch (IOException ex) {
             throw new RuntimeException("Could not store file " + fileName + ". Please try again!", ex);
         }
+    }
+
+    @Override
+    public byte[] getImage(String image) throws IOException {
+        Path path = Paths.get(filePath+"/"+image);
+        return Files.readAllBytes(path);
     }
 }

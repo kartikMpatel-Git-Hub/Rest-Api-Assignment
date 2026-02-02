@@ -18,5 +18,5 @@ public interface EmployeeInterface {
     EmployeeResponseDto updateEmployee(Integer id,EmployeeUpdateDto employee);
     EmployeeResponseDto employeeImage(Integer id, MultipartFile image) throws IOException;
 
-    MultipartFile getEmployeeImage(Integer id);
+    byte[] getEmployeeImage(Integer id) throws IOException;
 }
