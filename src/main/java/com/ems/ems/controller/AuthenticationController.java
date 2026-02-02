@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,18 +23,21 @@ public class AuthenticationController {
     private final AuthenticationInterface authenticationInterface;
 
     @PostMapping("/register")
-    public ResponseEntity<UserResponseDto> registerUser(UserCreateDto newUser){
+    public ResponseEntity<UserResponseDto> registerUser(
+            @RequestBody UserCreateDto newUser){
         return new ResponseEntity<>(
                 authenticationInterface.createUser(newUser),
                 HttpStatus.CREATED
         );
     }
     @PostMapping("/login")
-    public ResponseEntity<TokenResponseDto> loginUser(UserLoginDto credential,
-                                                      HttpServletResponse response){
+    public ResponseEntity<TokenResponseDto> loginUser(
+            @RequestBody  UserLoginDto credential,
+            HttpServletResponse response){
+        TokenResponseDto tokenResponse = authenticationInterface.login(credential);
         ResponseCookie cookie =
                 ResponseCookie
-                        .from("token","JWT_TOKEN")
+                        .from("token",tokenResponse.getToken())
                         .httpOnly(true)
                         .secure(false)
                         .path("/")
@@ -42,7 +46,7 @@ public class AuthenticationController {
                         .build();
         response.addHeader("Set-Cookie",cookie.toString());
         return new ResponseEntity<>(
-                authenticationInterface.login(credential),
+                tokenResponse,
                 HttpStatus.OK
         );
     }

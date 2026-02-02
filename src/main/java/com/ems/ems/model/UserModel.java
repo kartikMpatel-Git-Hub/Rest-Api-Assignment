@@ -28,15 +28,15 @@ public class UserModel implements UserDetails
 
     private String hashPassword;
 
-    private boolean isAccountNonExpired = false;
-    private boolean isAccountNonLocked = false;
-    private boolean isCredentialsNonExpired = false;
+    private boolean isAccountNonExpired = true;
+    private boolean isAccountNonLocked = true;
+    private boolean isCredentialsNonExpired = true;
     private boolean isEnabled = true;
 
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of();
+        return List.of(()->"ROLE_ADMIN");
     }
 
     @Override

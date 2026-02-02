@@ -2,6 +2,7 @@ package com.ems.ems.service;
 
 import com.ems.ems.dto.request.employee.EmployeeCreateDto;
 import com.ems.ems.dto.request.employee.EmployeeUpdateDto;
+import com.ems.ems.dto.response.ImageResponseDto;
 import com.ems.ems.dto.response.PaginatedResponse;
 import com.ems.ems.dto.response.employee.EmployeeResponseDto;
 import org.springframework.web.multipart.MultipartFile;
@@ -18,5 +19,5 @@ public interface EmployeeInterface {
     EmployeeResponseDto updateEmployee(Integer id,EmployeeUpdateDto employee);
     EmployeeResponseDto employeeImage(Integer id, MultipartFile image) throws IOException;
 
-    byte[] getEmployeeImage(Integer id) throws IOException;
+    ImageResponseDto getEmployeeImage(Integer id) throws IOException;
 }

@@ -1,5 +1,6 @@
 package com.ems.ems.service;
 
+import com.ems.ems.dto.response.ImageResponseDto;
 import org.springframework.core.io.Resource;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -9,4 +10,6 @@ public interface FileStorageInterface {
     String storeFile(MultipartFile file) throws IOException;
 
     byte[] getImage(String image) throws IOException;
+
+    ImageResponseDto getImageResponse(String image) throws IOException;
 }

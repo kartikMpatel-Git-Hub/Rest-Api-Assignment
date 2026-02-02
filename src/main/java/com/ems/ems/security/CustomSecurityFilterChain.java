@@ -21,13 +21,11 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 public class CustomSecurityFilterChain {
 
     private static final String[] PUBLIC_URLS = {
-            "/authentication/register",
-            "/authentication/login",
+            "/api/v1/authentication/register",
+            "/api/v1/authentication/login",
             "/swagger-ui.html",
             "/swagger-ui/**",
             "/v3/api-docs/**",
-            "/employees/**",
-            "/departments/**",
     };
 
     private final JwtAuthenticationFilter jwtAuthenticationFilter;

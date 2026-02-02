@@ -2,9 +2,10 @@ package com.ems.ems.security;
 
 import com.ems.ems.exception.SomethingWentWrongException;
 import io.jsonwebtoken.ExpiredJwtException;
-import io.jsonwebtoken.MalformedJwtException;
+import io.jsonwebtoken.JwtException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
@@ -30,43 +31,47 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                                     HttpServletResponse response,
                                     FilterChain filterChain) throws ServletException, IOException
     {
+
         String requestToken = request.getHeader("Authorization");
-
-        String userName = null;
-
         String token = null;
-
-        if(requestToken != null && requestToken.startsWith("Bearer ")){
+        if(requestToken != null && requestToken.startsWith("Bearer ")) {
             token = requestToken.substring(7);
-            try {
-                userName = jwtTokenHelper.getUserNameFromToken(token);
-            }catch (IllegalArgumentException e){
-                throw new SomethingWentWrongException("Unable To Get Jwt Token !");
-            }catch (ExpiredJwtException e){
-                throw new SomethingWentWrongException("Token Expire !");
-            }catch (MalformedJwtException e){
-                throw new SomethingWentWrongException("Invalid Jwt Token !");
+        }
+        if(token == null && request.getCookies() != null){
+            for(Cookie c : request.getCookies()){
+                if("token".equals(c.getName())){
+                    token = c.getValue();
+                    break;
+                }
             }
         }
-
-        if(userName != null && SecurityContextHolder.getContext().getAuthentication() == null){
-            UserDetails userDetails = userDetailsService.loadUserByUsername(userName);
-            if(jwtTokenHelper.validateToken(token,userDetails)){
-                if (!userDetails.isEnabled()) {
-                    throw new SomethingWentWrongException("User is disabled!");
-                }
-                if (!userDetails.isAccountNonLocked()) {
-                    throw new SomethingWentWrongException("User account is locked!");
-                }
-                UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken =
-                        new UsernamePasswordAuthenticationToken(userDetails,null,userDetails.getAuthorities());
-                usernamePasswordAuthenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-                SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
-            }else{
-                throw new SomethingWentWrongException("Invalid Jwt Token !");
-            }
+        if(token == null){
+            filterChain.doFilter(request,response);
+            return;
         }
-
-        filterChain.doFilter(request,response);
+        try{
+            String username = jwtTokenHelper.getUserNameFromToken(token);
+            if(username != null && SecurityContextHolder.getContext().getAuthentication() == null){
+                UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+                if(jwtTokenHelper.validateToken(token,userDetails)){
+                    UsernamePasswordAuthenticationToken authenticationToken
+                            = new UsernamePasswordAuthenticationToken(
+                                    userDetails,
+                            null,
+                            userDetails.getAuthorities()
+                    );
+                    authenticationToken.setDetails(
+                            new WebAuthenticationDetailsSource()
+                                    .buildDetails(request)
+                    );
+                    SecurityContextHolder.getContext().setAuthentication(authenticationToken);
+                }
+            }
+            filterChain.doFilter(request,response);
+        }catch (ExpiredJwtException ex){
+            throw new SomethingWentWrongException("TOKEN_EXPIRED");
+        } catch (JwtException ex){
+            throw new SomethingWentWrongException("INVALID_TOKEN");
+        }
     }
 }
