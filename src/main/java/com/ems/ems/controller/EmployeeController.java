@@ -135,7 +135,13 @@ public class EmployeeController {
     public ResponseEntity<byte[]> getEmployeeImage(
             @PathVariable Integer id
     ) throws IOException {
-        return ResponseEntity.ok(employeeInterface.getEmployeeImage(id));
+
+        var img = employeeInterface.getEmployeeImage(id);
+        return ResponseEntity.ok()
+                .contentType(MediaType.parseMediaType(img.getContentType()))
+                .header("Content-Disposition", "inline; filename=\"" + img.getFileName() + "\"")
+                .body(img.getBytes());
+
     }
 
 }

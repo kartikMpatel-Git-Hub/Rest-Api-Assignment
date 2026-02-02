@@ -37,7 +37,9 @@ public class AuthenticationService implements AuthenticationInterface {
     @Override
     public UserResponseDto createUser(UserCreateDto newUser) {
         UserModel user = new UserModel();
+        System.out.println(newUser.getUserName());
         user.setUserName(newUser.getUserName());
+        System.out.println(user.getUsername());
         user.setHashPassword(passwordEncoder.encode(newUser.getPassword()));
         UserModel savedUser = userRepository.save(user);
         return mapper.map(savedUser,UserResponseDto.class);
@@ -49,10 +51,7 @@ public class AuthenticationService implements AuthenticationInterface {
         if (!errors.isEmpty()) {
             throw new RegisterException(errors);
         }
-
-        System.out.println("checking..");
         authenticate(credential.getUserName(), credential.getPassword());
-        System.out.println("done..");
         UserDetails userDetails = userDetailsService.loadUserByUsername(credential.getUserName());
         String token = jwtTokenHelper.generateToken(userDetails);
         return new TokenResponseDto(token);

@@ -16,7 +16,6 @@ public class ModelMapperConfiguration {
                 .setMatchingStrategy(MatchingStrategies.STRICT)
                 .setFieldMatchingEnabled(true);
 
-
         return mapper;
     }
 }

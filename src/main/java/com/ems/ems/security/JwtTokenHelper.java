@@ -79,7 +79,7 @@ public class JwtTokenHelper {
                 setSubject(subject).
                 setIssuedAt(new Date(System.currentTimeMillis())).
                 setExpiration(new Date(System.currentTimeMillis()+ JWT_TOKEN_VALIDITY * 1000)).
-                signWith(key, SignatureAlgorithm.HS512)
+                signWith(key, SignatureAlgorithm.HS256)
                 .compact();
     }
 

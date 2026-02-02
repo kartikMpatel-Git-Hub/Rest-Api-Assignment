@@ -1,5 +1,6 @@
 package com.ems.ems.service.impl;
 
+import com.ems.ems.dto.response.ImageResponseDto;
 import com.ems.ems.service.FileStorageInterface;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.FileSystemResource;
@@ -47,5 +48,25 @@ public class FileStorageService implements FileStorageInterface {
     public byte[] getImage(String image) throws IOException {
         Path path = Paths.get(filePath+"/"+image);
         return Files.readAllBytes(path);
+    }
+
+    @Override
+    public ImageResponseDto getImageResponse(String image) throws IOException {
+
+        Path path = Paths.get(filePath, image);
+        byte[] bytes = Files.readAllBytes(path);
+
+        // Try to detect content type from file; fall back to octet-stream
+        String detected = Files.probeContentType(path);
+        if (detected == null) {
+            // very rudimentary extension-based fallback
+            String lowered = image.toLowerCase();
+            if (lowered.endsWith(".png")) detected = "image/png";
+            else if (lowered.endsWith(".jpg") || lowered.endsWith(".jpeg")) detected = "image/jpeg";
+            else if (lowered.endsWith(".gif")) detected = "image/gif";
+            else detected = "application/octet-stream";
+        }
+        return new ImageResponseDto(bytes, detected, image);
+
     }
 }

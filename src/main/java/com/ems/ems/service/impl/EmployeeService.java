@@ -2,6 +2,7 @@ package com.ems.ems.service.impl;
 
 import com.ems.ems.dto.request.employee.EmployeeCreateDto;
 import com.ems.ems.dto.request.employee.EmployeeUpdateDto;
+import com.ems.ems.dto.response.ImageResponseDto;
 import com.ems.ems.dto.response.PaginatedResponse;
 import com.ems.ems.dto.response.employee.EmployeeResponseDto;
 import com.ems.ems.exception.ResourceNotFoundException;
@@ -82,9 +83,9 @@ public class EmployeeService implements EmployeeInterface {
     }
 
     @Override
-    public byte[] getEmployeeImage(Integer id) throws IOException {
+    public ImageResponseDto getEmployeeImage(Integer id) throws IOException {
         EmployeeModel employee = getEmployeeModel(id);
-        return fileStorageInterface.getImage(employee.getImage());
+        return fileStorageInterface.getImageResponse(employee.getImage());
     }
 
     private EmployeeModel updateEmployeeDetail(Integer id, EmployeeUpdateDto employee) {
