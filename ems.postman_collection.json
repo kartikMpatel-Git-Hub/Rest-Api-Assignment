@@ -325,18 +325,33 @@
         {
           "name": "get employee",
           "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyVHlwZSI6IkFETUlOIiwidXNlck5hbWUiOiJrYXJ0aWsyIiwic3ViIjoia2FydGlrMiIsImlhdCI6MTc3MDA1MTg3OSwiZXhwIjoxNzcwMDU1NDc5fQ.gMHZMvBq3RWnZJBVoC2cX5m-TbdYKxS0bzLJSYrdwSo",
+                  "type": "string"
+                }
+              ]
+            },
             "method": "GET",
-            "header": [],
+            "header": [
+              {
+                "key": "X-API-VERSION",
+                "value": "1",
+                "type": "text"
+              }
+            ],
             "url": {
-              "raw": "http://localhost:8080/employees/2",
+              "raw": "http://localhost:8080/employees",
               "protocol": "http",
               "host": [
                 "localhost"
               ],
               "port": "8080",
               "path": [
-                "employees",
-                "2"
+                "employees"
               ]
             }
           },
@@ -345,17 +360,22 @@
               "name": "get employee",
               "originalRequest": {
                 "method": "GET",
-                "header": [],
+                "header": [
+                  {
+                    "key": "X-API-VERSION",
+                    "value": "1",
+                    "type": "text"
+                  }
+                ],
                 "url": {
-                  "raw": "http://localhost:8080/employees/1",
+                  "raw": "http://localhost:8080/employees",
                   "protocol": "http",
                   "host": [
                     "localhost"
                   ],
                   "port": "8080",
                   "path": [
-                    "employees",
-                    "1"
+                    "employees"
                   ]
                 }
               },
@@ -363,6 +383,30 @@
               "code": 200,
               "_postman_previewlanguage": null,
               "header": [
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, no-store, max-age=0, must-revalidate"
+                },
+                {
+                  "key": "Pragma",
+                  "value": "no-cache"
+                },
+                {
+                  "key": "Expires",
+                  "value": "0"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "DENY"
+                },
                 {
                   "key": "Content-Type",
                   "value": "application/json"
@@ -373,7 +417,7 @@
                 },
                 {
                   "key": "Date",
-                  "value": "Mon, 02 Feb 2026 12:16:43 GMT"
+                  "value": "Mon, 02 Feb 2026 17:27:29 GMT"
                 },
                 {
                   "key": "Keep-Alive",
@@ -385,7 +429,90 @@
                 }
               ],
               "cookie": [],
-              "body": "{\n    \"department\": {\n        \"department\": \"HR\",\n        \"id\": 1\n    },\n    \"email\": \"kartik@gmail.com\",\n    \"id\": 1,\n    \"image\": null,\n    \"name\": \"kartik\",\n    \"salary\": 50000\n}"
+              "body": "{\n    \"content\": [\n        {\n            \"department\": {\n                \"department\": \"R&D\",\n                \"id\": 2\n            },\n            \"email\": \"kartik@gmail.com\",\n            \"id\": 1,\n            \"image\": null,\n            \"name\": \"kartik\",\n            \"salary\": 50000\n        },\n        {\n            \"department\": {\n                \"department\": \"HR\",\n                \"id\": 1\n            },\n            \"email\": \"manavnew@gmail.com\",\n            \"id\": 2,\n            \"image\": \"a250135b-a6a3-41ae-8a7f-d6ebbcd645c6_download.png\",\n            \"name\": \"manav new\",\n            \"salary\": 90000\n        },\n        {\n            \"department\": {\n                \"department\": \"TECHNICAL\",\n                \"id\": 3\n            },\n            \"email\": \"ronak@gmail.com\",\n            \"id\": 3,\n            \"image\": null,\n            \"name\": \"ronak\",\n            \"salary\": 60000\n        },\n        {\n            \"department\": {\n                \"department\": \"IT SUPPORT\",\n                \"id\": 4\n            },\n            \"email\": \"nikhil@gmail.com\",\n            \"id\": 4,\n            \"image\": null,\n            \"name\": \"nikhil\",\n            \"salary\": 66000\n        },\n        {\n            \"department\": {\n                \"department\": \"R&D\",\n                \"id\": 2\n            },\n            \"email\": \"keval@gmail.com\",\n            \"id\": 5,\n            \"image\": null,\n            \"name\": \"keval\",\n            \"salary\": 55000\n        },\n        {\n            \"department\": {\n                \"department\": \"TECHNICAL\",\n                \"id\": 3\n            },\n            \"email\": \"mayur@gmail.com\",\n            \"id\": 6,\n            \"image\": null,\n            \"name\": \"mayur\",\n            \"salary\": 55000\n        },\n        {\n            \"department\": {\n                \"department\": \"IT SUPPORT\",\n                \"id\": 4\n            },\n            \"email\": \"rudrik@gmail.com\",\n            \"id\": 7,\n            \"image\": null,\n            \"name\": \"rudrik\",\n            \"salary\": 60000\n        },\n        {\n            \"department\": {\n                \"department\": \"IT SUPPORT\",\n                \"id\": 4\n            },\n            \"email\": \"harsh@gmail.com\",\n            \"id\": 8,\n            \"image\": null,\n            \"name\": \"harsh\",\n            \"salary\": 69000\n        },\n        {\n            \"department\": {\n                \"department\": \"R&D\",\n                \"id\": 2\n            },\n            \"email\": \"krutik@gmail.com\",\n            \"id\": 9,\n            \"image\": null,\n            \"name\": \"krutik\",\n            \"salary\": 80000\n        },\n        {\n            \"department\": {\n                \"department\": \"TECHNICAL\",\n                \"id\": 3\n            },\n            \"email\": \"purnank@gmail.com\",\n            \"id\": 10,\n            \"image\": null,\n            \"name\": \"purnank\",\n            \"salary\": 68000\n        }\n    ],\n    \"isLast\": false,\n    \"totalItems\": 11,\n    \"totalPage\": 2\n}"
+            },
+            {
+              "name": "get employee",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "X-API-VERSION",
+                    "value": "1",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "http://localhost:8080/employees/1?version=2",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "employees",
+                    "1"
+                  ],
+                  "query": [
+                    {
+                      "key": "version",
+                      "value": "2",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, no-store, max-age=0, must-revalidate"
+                },
+                {
+                  "key": "Pragma",
+                  "value": "no-cache"
+                },
+                {
+                  "key": "Expires",
+                  "value": "0"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "DENY"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 02 Feb 2026 17:43:30 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"department\": {\n        \"department\": \"R&D\",\n        \"id\": 2\n    },\n    \"email\": \"kartik@gmail.com\",\n    \"id\": 1,\n    \"image\": null,\n    \"name\": \"kartik\",\n    \"salary\": 50000\n}"
             }
           ]
         },
@@ -484,14 +611,15 @@
               "raw": "{\r\n  \"name\": \"manav new\",\r\n  \"email\": \"manavnew@gmail.com\",\r\n  \"salary\": 90000,\r\n  \"department\": 1\r\n}"
             },
             "url": {
-              "raw": "http://localhost:8080/departments?department=2",
+              "raw": "http://localhost:8080/employees/1?department=2",
               "protocol": "http",
               "host": [
                 "localhost"
               ],
               "port": "8080",
               "path": [
-                "departments"
+                "employees",
+                "1"
               ],
               "query": [
                 {
@@ -633,8 +761,15 @@
             "method": "POST",
             "header": [],
             "body": {
-              "mode": "raw",
-              "raw": "{\r\n  \"name\": \"krish\",\r\n  \"email\": \"krish@gmail.com\",\r\n  \"salary\": 58000,\r\n  \"department\": 1\r\n}"
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "image",
+                  "type": "file",
+                  "uuid": "e5fc4d5b-591b-406e-886a-795ea82c82d3",
+                  "src": "/C:/Users/patelkar/Pictures/images/download.png"
+                }
+              ]
             },
             "url": {
               "raw": "http://localhost:8080/employees/2/image",
@@ -710,6 +845,34 @@
               "body": "{\n    \"department\": {\n        \"department\": \"HR\",\n        \"id\": 1\n    },\n    \"email\": \"manavnew@gmail.com\",\n    \"id\": 2,\n    \"image\": \"a250135b-a6a3-41ae-8a7f-d6ebbcd645c6_download.png\",\n    \"name\": \"manav new\",\n    \"salary\": 90000\n}"
             }
           ]
+        },
+        {
+          "name": "employee Image",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"krish\",\r\n  \"email\": \"krish@gmail.com\",\r\n  \"salary\": 58000,\r\n  \"department\": 1\r\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/employees/2/image",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "employees",
+                "2",
+                "image"
+              ]
+            }
+          },
+          "response": []
         }
       ]
     },
@@ -935,6 +1098,241 @@
               ],
               "cookie": [],
               "body": "{\n    \"content\": [\n        {\n            \"department\": \"HR\",\n            \"id\": 1\n        },\n        {\n            \"department\": \"R&D\",\n            \"id\": 2\n        }\n    ],\n    \"isLast\": false,\n    \"totalItems\": 4,\n    \"totalPage\": 2\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "authentication",
+      "item": [
+        {
+          "name": "register",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"userName\" : \"kartik3\",\r\n  \"password\" : \"123\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/v1/authentication/register",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "v1",
+                "authentication",
+                "register"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "register",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"userName\" : \"kartik3\",\r\n  \"password\" : \"123\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/authentication/register",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "authentication",
+                    "register"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, no-store, max-age=0, must-revalidate"
+                },
+                {
+                  "key": "Pragma",
+                  "value": "no-cache"
+                },
+                {
+                  "key": "Expires",
+                  "value": "0"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "DENY"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 02 Feb 2026 17:04:03 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"id\": 3,\n    \"username\": \"kartik3\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "login",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"userName\" : \"kartik2\",\r\n  \"password\" : \"123\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/v1/authentication/login",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "v1",
+                "authentication",
+                "login"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "login",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"userName\" : \"kartik2\",\r\n  \"password\" : \"123\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/authentication/login",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "authentication",
+                    "login"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Set-Cookie",
+                  "value": "token=eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyVHlwZSI6IkFETUlOIiwidXNlck5hbWUiOiJrYXJ0aWsyIiwic3ViIjoia2FydGlrMiIsImlhdCI6MTc3MDA1MTg3OSwiZXhwIjoxNzcwMDU1NDc5fQ.gMHZMvBq3RWnZJBVoC2cX5m-TbdYKxS0bzLJSYrdwSo; Path=/; Max-Age=3600; Expires=Mon, 02 Feb 2026 18:04:39 GMT; HttpOnly; SameSite=Lax"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, no-store, max-age=0, must-revalidate"
+                },
+                {
+                  "key": "Pragma",
+                  "value": "no-cache"
+                },
+                {
+                  "key": "Expires",
+                  "value": "0"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "DENY"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 02 Feb 2026 17:04:39 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"token\": \"eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyVHlwZSI6IkFETUlOIiwidXNlck5hbWUiOiJrYXJ0aWsyIiwic3ViIjoia2FydGlrMiIsImlhdCI6MTc3MDA1MTg3OSwiZXhwIjoxNzcwMDU1NDc5fQ.gMHZMvBq3RWnZJBVoC2cX5m-TbdYKxS0bzLJSYrdwSo\"\n}"
             }
           ]
         }
