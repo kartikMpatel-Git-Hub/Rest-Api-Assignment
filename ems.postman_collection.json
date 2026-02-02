@@ -1,0 +1,944 @@
+{
+  "info": {
+    "_postman_id": "5c5bdbd3-ddd0-4b4a-b96a-d3c510ca63ec",
+    "name": "ems",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "40208606"
+  },
+  "item": [
+    {
+      "name": "employees",
+      "item": [
+        {
+          "name": "create employee",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"krish\",\r\n  \"email\": \"krish@gmail.com\",\r\n  \"salary\": 58000,\r\n  \"department\": 1\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/employees",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "employees"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "create employee",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"name\": \"manav\",\r\n  \"email\": \"manav@gmail.com\",\r\n  \"salary\": 60000,\r\n  \"department\": 2\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/employees",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "employees"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 02 Feb 2026 12:08:53 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"department\": {\n        \"department\": \"R&D\",\n        \"id\": 2\n    },\n    \"email\": \"manav@gmail.com\",\n    \"id\": 2,\n    \"image\": null,\n    \"name\": \"manav\",\n    \"salary\": 60000\n}"
+            }
+          ]
+        },
+        {
+          "name": "get all employees",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"manav\",\r\n  \"email\": \"manav@gmail.com\",\r\n  \"salary\": 60000,\r\n  \"department\": 2\r\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/employees?size=10&page=0&sortBy=name&sortDir=asc",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "employees"
+              ],
+              "query": [
+                {
+                  "key": "size",
+                  "value": "10",
+                  "type": "text"
+                },
+                {
+                  "key": "page",
+                  "value": "0",
+                  "type": "text"
+                },
+                {
+                  "key": "sortBy",
+                  "value": "name",
+                  "type": "text"
+                },
+                {
+                  "key": "sortDir",
+                  "value": "asc",
+                  "type": "text"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "get all employees",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"name\": \"manav\",\r\n  \"email\": \"manav@gmail.com\",\r\n  \"salary\": 60000,\r\n  \"department\": 2\r\n}"
+                },
+                "url": {
+                  "raw": "http://localhost:8080/employees?size=2&page=3",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "employees"
+                  ],
+                  "query": [
+                    {
+                      "key": "size",
+                      "value": "2",
+                      "type": "text"
+                    },
+                    {
+                      "key": "page",
+                      "value": "3",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 02 Feb 2026 12:13:26 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"content\": [\n        {\n            \"department\": {\n                \"department\": \"IT SUPPORT\",\n                \"id\": 4\n            },\n            \"email\": \"rudrik@gmail.com\",\n            \"id\": 7,\n            \"image\": null,\n            \"name\": \"rudrik\",\n            \"salary\": 60000\n        },\n        {\n            \"department\": {\n                \"department\": \"IT SUPPORT\",\n                \"id\": 4\n            },\n            \"email\": \"harsh@gmail.com\",\n            \"id\": 8,\n            \"image\": null,\n            \"name\": \"harsh\",\n            \"salary\": 69000\n        }\n    ],\n    \"isLast\": false,\n    \"totalItems\": 11,\n    \"totalPage\": 6\n}"
+            },
+            {
+              "name": "get all employees",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"name\": \"manav\",\r\n  \"email\": \"manav@gmail.com\",\r\n  \"salary\": 60000,\r\n  \"department\": 2\r\n}"
+                },
+                "url": {
+                  "raw": "http://localhost:8080/employees",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "employees"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 02 Feb 2026 12:13:50 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"content\": [\n        {\n            \"department\": {\n                \"department\": \"HR\",\n                \"id\": 1\n            },\n            \"email\": \"kartik@gmail.com\",\n            \"id\": 1,\n            \"image\": null,\n            \"name\": \"kartik\",\n            \"salary\": 50000\n        },\n        {\n            \"department\": {\n                \"department\": \"R&D\",\n                \"id\": 2\n            },\n            \"email\": \"manav@gmail.com\",\n            \"id\": 2,\n            \"image\": null,\n            \"name\": \"manav\",\n            \"salary\": 60000\n        },\n        {\n            \"department\": {\n                \"department\": \"TECHNICAL\",\n                \"id\": 3\n            },\n            \"email\": \"ronak@gmail.com\",\n            \"id\": 3,\n            \"image\": null,\n            \"name\": \"ronak\",\n            \"salary\": 60000\n        },\n        {\n            \"department\": {\n                \"department\": \"IT SUPPORT\",\n                \"id\": 4\n            },\n            \"email\": \"nikhil@gmail.com\",\n            \"id\": 4,\n            \"image\": null,\n            \"name\": \"nikhil\",\n            \"salary\": 66000\n        },\n        {\n            \"department\": {\n                \"department\": \"R&D\",\n                \"id\": 2\n            },\n            \"email\": \"keval@gmail.com\",\n            \"id\": 5,\n            \"image\": null,\n            \"name\": \"keval\",\n            \"salary\": 55000\n        },\n        {\n            \"department\": {\n                \"department\": \"TECHNICAL\",\n                \"id\": 3\n            },\n            \"email\": \"mayur@gmail.com\",\n            \"id\": 6,\n            \"image\": null,\n            \"name\": \"mayur\",\n            \"salary\": 55000\n        },\n        {\n            \"department\": {\n                \"department\": \"IT SUPPORT\",\n                \"id\": 4\n            },\n            \"email\": \"rudrik@gmail.com\",\n            \"id\": 7,\n            \"image\": null,\n            \"name\": \"rudrik\",\n            \"salary\": 60000\n        },\n        {\n            \"department\": {\n                \"department\": \"IT SUPPORT\",\n                \"id\": 4\n            },\n            \"email\": \"harsh@gmail.com\",\n            \"id\": 8,\n            \"image\": null,\n            \"name\": \"harsh\",\n            \"salary\": 69000\n        },\n        {\n            \"department\": {\n                \"department\": \"R&D\",\n                \"id\": 2\n            },\n            \"email\": \"krutik@gmail.com\",\n            \"id\": 9,\n            \"image\": null,\n            \"name\": \"krutik\",\n            \"salary\": 80000\n        },\n        {\n            \"department\": {\n                \"department\": \"TECHNICAL\",\n                \"id\": 3\n            },\n            \"email\": \"purnank@gmail.com\",\n            \"id\": 10,\n            \"image\": null,\n            \"name\": \"purnank\",\n            \"salary\": 68000\n        }\n    ],\n    \"isLast\": false,\n    \"totalItems\": 11,\n    \"totalPage\": 2\n}"
+            },
+            {
+              "name": "get all employees",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"name\": \"manav\",\r\n  \"email\": \"manav@gmail.com\",\r\n  \"salary\": 60000,\r\n  \"department\": 2\r\n}"
+                },
+                "url": {
+                  "raw": "http://localhost:8080/employees?size=10&page=0&sortBy=name&sortDir=asc",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "employees"
+                  ],
+                  "query": [
+                    {
+                      "key": "size",
+                      "value": "10",
+                      "type": "text"
+                    },
+                    {
+                      "key": "page",
+                      "value": "0",
+                      "type": "text"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "name",
+                      "type": "text"
+                    },
+                    {
+                      "key": "sortDir",
+                      "value": "asc",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 02 Feb 2026 12:15:41 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"content\": [\n        {\n            \"department\": {\n                \"department\": \"IT SUPPORT\",\n                \"id\": 4\n            },\n            \"email\": \"harsh@gmail.com\",\n            \"id\": 8,\n            \"image\": null,\n            \"name\": \"harsh\",\n            \"salary\": 69000\n        },\n        {\n            \"department\": {\n                \"department\": \"HR\",\n                \"id\": 1\n            },\n            \"email\": \"kartik@gmail.com\",\n            \"id\": 1,\n            \"image\": null,\n            \"name\": \"kartik\",\n            \"salary\": 50000\n        },\n        {\n            \"department\": {\n                \"department\": \"R&D\",\n                \"id\": 2\n            },\n            \"email\": \"keval@gmail.com\",\n            \"id\": 5,\n            \"image\": null,\n            \"name\": \"keval\",\n            \"salary\": 55000\n        },\n        {\n            \"department\": {\n                \"department\": \"HR\",\n                \"id\": 1\n            },\n            \"email\": \"krish@gmail.com\",\n            \"id\": 11,\n            \"image\": null,\n            \"name\": \"krish\",\n            \"salary\": 58000\n        },\n        {\n            \"department\": {\n                \"department\": \"R&D\",\n                \"id\": 2\n            },\n            \"email\": \"krutik@gmail.com\",\n            \"id\": 9,\n            \"image\": null,\n            \"name\": \"krutik\",\n            \"salary\": 80000\n        },\n        {\n            \"department\": {\n                \"department\": \"R&D\",\n                \"id\": 2\n            },\n            \"email\": \"manav@gmail.com\",\n            \"id\": 2,\n            \"image\": null,\n            \"name\": \"manav\",\n            \"salary\": 60000\n        },\n        {\n            \"department\": {\n                \"department\": \"TECHNICAL\",\n                \"id\": 3\n            },\n            \"email\": \"mayur@gmail.com\",\n            \"id\": 6,\n            \"image\": null,\n            \"name\": \"mayur\",\n            \"salary\": 55000\n        },\n        {\n            \"department\": {\n                \"department\": \"IT SUPPORT\",\n                \"id\": 4\n            },\n            \"email\": \"nikhil@gmail.com\",\n            \"id\": 4,\n            \"image\": null,\n            \"name\": \"nikhil\",\n            \"salary\": 66000\n        },\n        {\n            \"department\": {\n                \"department\": \"TECHNICAL\",\n                \"id\": 3\n            },\n            \"email\": \"purnank@gmail.com\",\n            \"id\": 10,\n            \"image\": null,\n            \"name\": \"purnank\",\n            \"salary\": 68000\n        },\n        {\n            \"department\": {\n                \"department\": \"TECHNICAL\",\n                \"id\": 3\n            },\n            \"email\": \"ronak@gmail.com\",\n            \"id\": 3,\n            \"image\": null,\n            \"name\": \"ronak\",\n            \"salary\": 60000\n        }\n    ],\n    \"isLast\": false,\n    \"totalItems\": 11,\n    \"totalPage\": 2\n}"
+            }
+          ]
+        },
+        {
+          "name": "get employee",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/employees/2",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "employees",
+                "2"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "get employee",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8080/employees/1",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "employees",
+                    "1"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 02 Feb 2026 12:16:43 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"department\": {\n        \"department\": \"HR\",\n        \"id\": 1\n    },\n    \"email\": \"kartik@gmail.com\",\n    \"id\": 1,\n    \"image\": null,\n    \"name\": \"kartik\",\n    \"salary\": 50000\n}"
+            }
+          ]
+        },
+        {
+          "name": "update employee",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"manav new\",\r\n  \"email\": \"manavnew@gmail.com\",\r\n  \"salary\": 90000,\r\n  \"department\": 1\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/employees/2",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "employees",
+                "2"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "update employee",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"name\": \"manav new\",\r\n  \"email\": \"manavnew@gmail.com\",\r\n  \"salary\": 90000,\r\n  \"department\": 1\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/employees/2",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "employees",
+                    "2"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 02 Feb 2026 12:20:22 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"department\": {\n        \"department\": \"HR\",\n        \"id\": 1\n    },\n    \"email\": \"manavnew@gmail.com\",\n    \"id\": 2,\n    \"image\": null,\n    \"name\": \"manav new\",\n    \"salary\": 90000\n}"
+            }
+          ]
+        },
+        {
+          "name": "update department",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"manav new\",\r\n  \"email\": \"manavnew@gmail.com\",\r\n  \"salary\": 90000,\r\n  \"department\": 1\r\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/departments?department=2",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "departments"
+              ],
+              "query": [
+                {
+                  "key": "department",
+                  "value": "2"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "update department",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"name\": \"manav new\",\r\n  \"email\": \"manavnew@gmail.com\",\r\n  \"salary\": 90000,\r\n  \"department\": 1\r\n}"
+                },
+                "url": {
+                  "raw": "http://localhost:8080/employees/1?department=2",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "employees",
+                    "1"
+                  ],
+                  "query": [
+                    {
+                      "key": "department",
+                      "value": "2"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 02 Feb 2026 12:23:27 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"department\": {\n        \"department\": \"R&D\",\n        \"id\": 2\n    },\n    \"email\": \"kartik@gmail.com\",\n    \"id\": 1,\n    \"image\": null,\n    \"name\": \"kartik\",\n    \"salary\": 50000\n}"
+            }
+          ]
+        },
+        {
+          "name": "delete empoyee",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/employees/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "employees",
+                "1"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "delete empoyee",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8080/employees/1",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "employees",
+                    "1"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 02 Feb 2026 12:31:35 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Employee With Id : 1 Deleted !\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "employee image upload",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"krish\",\r\n  \"email\": \"krish@gmail.com\",\r\n  \"salary\": 58000,\r\n  \"department\": 1\r\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/employees/2/image",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "employees",
+                "2",
+                "image"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "employee image upload",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "image",
+                      "type": "file",
+                      "uuid": "e5fc4d5b-591b-406e-886a-795ea82c82d3",
+                      "src": "/C:/Users/patelkar/Pictures/images/download.png"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "http://localhost:8080/employees/2/image",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "employees",
+                    "2",
+                    "image"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 02 Feb 2026 12:41:58 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"department\": {\n        \"department\": \"HR\",\n        \"id\": 1\n    },\n    \"email\": \"manavnew@gmail.com\",\n    \"id\": 2,\n    \"image\": \"a250135b-a6a3-41ae-8a7f-d6ebbcd645c6_download.png\",\n    \"name\": \"manav new\",\n    \"salary\": 90000\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "departments",
+      "item": [
+        {
+          "name": "create department",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"department\": \"IT SUPPORT\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/departments",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "departments"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "create department",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"department\": \"R&D\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/departments",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "departments"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 02 Feb 2026 12:08:25 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"department\": \"R&D\",\n    \"id\": 2\n}"
+            }
+          ]
+        },
+        {
+          "name": "get all departments",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"department\": \"R&D\"\r\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/departments?page=2",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "departments"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "2",
+                  "type": "text"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "get all departments",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"department\": \"R&D\"\r\n}"
+                },
+                "url": {
+                  "raw": "http://localhost:8080/departments",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "departments"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 02 Feb 2026 12:12:22 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"content\": [\n        {\n            \"department\": \"HR\",\n            \"id\": 1\n        },\n        {\n            \"department\": \"R&D\",\n            \"id\": 2\n        },\n        {\n            \"department\": \"TECHNICAL\",\n            \"id\": 3\n        },\n        {\n            \"department\": \"IT SUPPORT\",\n            \"id\": 4\n        }\n    ],\n    \"isLast\": true,\n    \"totalItems\": 4,\n    \"totalPage\": 1\n}"
+            },
+            {
+              "name": "get all departments",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"department\": \"R&D\"\r\n}"
+                },
+                "url": {
+                  "raw": "http://localhost:8080/departments?size=2",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "departments"
+                  ],
+                  "query": [
+                    {
+                      "key": "size",
+                      "value": "2",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 02 Feb 2026 12:12:48 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"content\": [\n        {\n            \"department\": \"HR\",\n            \"id\": 1\n        },\n        {\n            \"department\": \"R&D\",\n            \"id\": 2\n        }\n    ],\n    \"isLast\": false,\n    \"totalItems\": 4,\n    \"totalPage\": 2\n}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
