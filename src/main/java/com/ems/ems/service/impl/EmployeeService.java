@@ -76,7 +76,6 @@ public class EmployeeService implements EmployeeInterface {
         EmployeeModel employeeModel = getEmployeeModel(id);
         String savedImagePath = fileStorageInterface.storeFile(image);
         employeeModel.setImage(savedImagePath);
-
         return mapper.map(
                 employeeRepository.save(employeeModel),
                 EmployeeResponseDto.class);

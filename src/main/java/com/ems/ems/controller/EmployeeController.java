@@ -53,10 +53,9 @@ public class EmployeeController {
             @RequestParam(name = "page",defaultValue = "0") Integer page,
             @RequestParam(name = "size",defaultValue = "10")Integer size,
             @RequestParam(name = "sortBy",defaultValue = "id")String sortBy,
-            @RequestParam(name = "sortDir",defaultValue = "asc") String sortDir,
-            @RequestHeader(value = "X-API-VERSION=2")int version
+            @RequestParam(name = "sortDir",defaultValue = "asc") String sortDir
     ){
-        logger.info("get employees version 2");
+        logger.info("get employees version Simple");
         return new ResponseEntity<>(
                 employeeInterface.getAllEmployees(page, size, sortBy, sortDir),
                 HttpStatus.OK);
@@ -72,17 +71,11 @@ public class EmployeeController {
                 HttpStatus.OK);
     }
 
-    @GetMapping(value = "/{id}",params = "version=2")
+    @GetMapping(value = "/{id}")
     public ResponseEntity<EmployeeResponseDto> getEmployeeV2(
-            @PathVariable Integer id,
-            @RequestParam(name = "version",required = false)Integer version
+            @PathVariable Integer id
     ){
-        if(version == null || version == 1)
-            logger.info("get employee version 1 ");
-        else if(version == 2)
-            logger.info("get employee version 2");
-        else
-            logger.info("Unsupported API version");
+        logger.info("get employee version simple");
         return new ResponseEntity<>(
                 employeeInterface.getEmployee(id),
                 HttpStatus.OK);
