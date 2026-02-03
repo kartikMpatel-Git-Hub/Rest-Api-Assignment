@@ -1,7 +1,9 @@
 package com.ems.ems.controller;
 
 import com.ems.ems.dto.request.employee.EmployeeCreateDto;
+import com.ems.ems.dto.request.employee.EmployeeRequestDto;
 import com.ems.ems.dto.request.employee.EmployeeUpdateDto;
+import com.ems.ems.dto.request.employee.OnUpdate;
 import com.ems.ems.dto.response.PaginatedResponse;
 import com.ems.ems.dto.response.ResponseDto;
 import com.ems.ems.dto.response.employee.EmployeeResponseDto;
@@ -14,6 +16,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -84,7 +87,7 @@ public class EmployeeController {
     @PutMapping("/{id}")
     public ResponseEntity<EmployeeResponseDto> updateEmployee(
             @PathVariable Integer id,
-            @RequestBody @Valid EmployeeUpdateDto employeeUpdate
+            @Validated(OnUpdate.class)@RequestBody EmployeeRequestDto employeeUpdate
     ){
         return new ResponseEntity<>(
                 employeeInterface.updateEmployee(id,employeeUpdate),

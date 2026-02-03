@@ -1,11 +1,12 @@
 package com.ems.ems.service.impl;
 
 import com.ems.ems.dto.request.employee.EmployeeCreateDto;
-import com.ems.ems.dto.request.employee.EmployeeUpdateDto;
+import com.ems.ems.dto.request.employee.EmployeeRequestDto;
 import com.ems.ems.dto.response.ImageResponseDto;
 import com.ems.ems.dto.response.PaginatedResponse;
 import com.ems.ems.dto.response.employee.EmployeeResponseDto;
 import com.ems.ems.exception.ResourceNotFoundException;
+import com.ems.ems.exception.SomethingWentWrongException;
 import com.ems.ems.model.DepartmentModel;
 import com.ems.ems.model.EmployeeModel;
 import com.ems.ems.repository.EmployeeRepository;
@@ -66,7 +67,7 @@ public class EmployeeService implements EmployeeInterface {
     }
 
     @Override
-    public EmployeeResponseDto updateEmployee(Integer id, EmployeeUpdateDto employee) {
+    public EmployeeResponseDto updateEmployee(Integer id, EmployeeRequestDto employee) {
         EmployeeModel savedEmployee = updateEmployeeDetail(id, employee);
         return mapper.map(savedEmployee,EmployeeResponseDto.class);
     }
@@ -84,10 +85,12 @@ public class EmployeeService implements EmployeeInterface {
     @Override
     public ImageResponseDto getEmployeeImage(Integer id) throws IOException {
         EmployeeModel employee = getEmployeeModel(id);
+        if(employee.getImage() == null)
+            throw new SomethingWentWrongException("User Image Not Found for userId : " + id);
         return fileStorageInterface.getImageResponse(employee.getImage());
     }
 
-    private EmployeeModel updateEmployeeDetail(Integer id, EmployeeUpdateDto employee) {
+    private EmployeeModel updateEmployeeDetail(Integer id, EmployeeRequestDto employee) {
         EmployeeModel existingEmployee = getEmployeeModel(id);
         if(employee.getName() != null)
             existingEmployee.setName(employee.getName());
