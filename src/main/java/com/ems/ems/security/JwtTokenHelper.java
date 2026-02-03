@@ -35,6 +35,7 @@ public class JwtTokenHelper {
     public void initializeKey(){
         this.key  = Keys.hmacShaKeyFor(secret.getBytes());
     }
+
     public String getUserNameFromToken(String token){
         return getClaimFromToken(token, Claims::getSubject);
     }

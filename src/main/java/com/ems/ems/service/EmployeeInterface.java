@@ -1,6 +1,7 @@
 package com.ems.ems.service;
 
 import com.ems.ems.dto.request.employee.EmployeeCreateDto;
+import com.ems.ems.dto.request.employee.EmployeeRequestDto;
 import com.ems.ems.dto.request.employee.EmployeeUpdateDto;
 import com.ems.ems.dto.response.ImageResponseDto;
 import com.ems.ems.dto.response.PaginatedResponse;
@@ -16,7 +17,7 @@ public interface EmployeeInterface {
     EmployeeResponseDto getEmployee(Integer id);
     void removeEmployee(Integer id);
     EmployeeResponseDto updateDepartment(Integer id, Integer department);
-    EmployeeResponseDto updateEmployee(Integer id,EmployeeUpdateDto employee);
+    EmployeeResponseDto updateEmployee(Integer id, EmployeeRequestDto    employee);
     EmployeeResponseDto employeeImage(Integer id, MultipartFile image) throws IOException;
 
     ImageResponseDto getEmployeeImage(Integer id) throws IOException;
