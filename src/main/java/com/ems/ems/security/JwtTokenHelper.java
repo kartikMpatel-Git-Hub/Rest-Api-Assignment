@@ -67,8 +67,8 @@ public class JwtTokenHelper {
                 ()-> new ResourceNotFoundException("User","userName",userDetails.getUsername())
         );
         claims.put("userType","ADMIN");
-        claims.put("userName",userDetails.getUsername());
-        return doGenerateToken(claims,userDetails.getUsername());
+        claims.put("userName",user.getUsername());
+        return doGenerateToken(claims,user.getUsername());
     }
 
     private String doGenerateToken(Map<String,Object> claims,String subject){

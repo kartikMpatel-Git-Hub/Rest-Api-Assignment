@@ -1,6 +1,7 @@
 package com.ems.ems.service.impl;
 
 import com.ems.ems.dto.response.ImageResponseDto;
+import com.ems.ems.exception.SomethingWentWrongException;
 import com.ems.ems.service.FileStorageInterface;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.FileSystemResource;
@@ -31,7 +32,7 @@ public class FileStorageService implements FileStorageInterface {
         String fileName = UUID.randomUUID().toString()+"_"+originalFileName;
         try {
             if(fileName.contains("..")) {
-                throw new RuntimeException("Sorry! Filename contains invalid path sequence " + fileName);
+                throw new SomethingWentWrongException("Sorry! Filename contains invalid path sequence " + fileName);
             }
 
             Path targetLocation = path.resolve(fileName);
@@ -40,7 +41,7 @@ public class FileStorageService implements FileStorageInterface {
             return fileName;
 
         } catch (IOException ex) {
-            throw new RuntimeException("Could not store file " + fileName + ". Please try again!", ex);
+            throw new SomethingWentWrongException("Could not store file " + fileName + ". Please try again!");
         }
     }
 
@@ -56,10 +57,8 @@ public class FileStorageService implements FileStorageInterface {
         Path path = Paths.get(filePath, image);
         byte[] bytes = Files.readAllBytes(path);
 
-        // Try to detect content type from file; fall back to octet-stream
         String detected = Files.probeContentType(path);
         if (detected == null) {
-            // very rudimentary extension-based fallback
             String lowered = image.toLowerCase();
             if (lowered.endsWith(".png")) detected = "image/png";
             else if (lowered.endsWith(".jpg") || lowered.endsWith(".jpeg")) detected = "image/jpeg";
@@ -67,6 +66,5 @@ public class FileStorageService implements FileStorageInterface {
             else detected = "application/octet-stream";
         }
         return new ImageResponseDto(bytes, detected, image);
-
     }
 }

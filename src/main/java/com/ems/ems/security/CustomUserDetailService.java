@@ -2,7 +2,6 @@ package com.ems.ems.security;
 
 
 import com.ems.ems.exception.ResourceNotFoundException;
-import com.ems.ems.model.UserModel;
 import com.ems.ems.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
