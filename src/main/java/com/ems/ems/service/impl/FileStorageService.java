@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -24,18 +25,21 @@ public class FileStorageService implements FileStorageInterface {
 
     @Override
     public String storeFile(MultipartFile file) throws IOException {
-        Path path = Paths.get(filePath);
+        Path path = Paths.get(filePath).toAbsolutePath().normalize();
         if(!Files.exists(path)){
             Files.createDirectories(path);
         }
-        String originalFileName = file.getOriginalFilename();
+        String originalFileName = StringUtils.cleanPath(file.getOriginalFilename());
         String fileName = UUID.randomUUID().toString()+"_"+originalFileName;
         try {
             if(fileName.contains("..")) {
                 throw new SomethingWentWrongException("Sorry! Filename contains invalid path sequence " + fileName);
             }
 
-            Path targetLocation = path.resolve(fileName);
+            Path targetLocation = path.resolve(fileName).normalize();
+            if(!targetLocation.startsWith(path)){
+                throw new SomethingWentWrongException("can not store outside of directory !");
+            }
             Files.copy(file.getInputStream(), targetLocation, StandardCopyOption.REPLACE_EXISTING);
 
             return fileName;

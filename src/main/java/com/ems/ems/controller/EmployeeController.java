@@ -7,6 +7,7 @@ import com.ems.ems.dto.request.employee.OnUpdate;
 import com.ems.ems.dto.response.PaginatedResponse;
 import com.ems.ems.dto.response.ResponseDto;
 import com.ems.ems.dto.response.employee.EmployeeResponseDto;
+import com.ems.ems.exception.SomethingWentWrongException;
 import com.ems.ems.service.EmployeeInterface;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
